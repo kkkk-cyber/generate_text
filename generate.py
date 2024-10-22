@@ -9,7 +9,6 @@ from peft import PeftModel
 from typing import Union
 import queue
 import random
-# from random import *
 import requests  # 请求网页
 import traceback
 import os
@@ -17,10 +16,10 @@ import jieba.analyse as ana
 import jieba
 import jieba.posseg as jp
 from gensim import corpora, models
-from generate_blog.generate_llama3 import generate_blog
+from generate_text.generate_llama3 import generate_text
 from TextToImage.EnChImage import generate_img
 
-root_path = "./blog"
+root_path = "./text"
 
 def create_directory_and_file(user_id, topic, emotion):
     # 定义目录名称
@@ -77,11 +76,11 @@ def download_picture(html,file_path):
 def get_input(nikename,topic,emtion):
     #读取数据库得到用户信息
     db = pymysql.connect(
-        host="10.122.241.181"
+        host="host"
         , user="root"
         , passwd="123456"
-        , database="person_feature"
-        , port=3306
+        , database="db"
+        , port=port
     )
 
     # 创建游标并执行查询
@@ -96,8 +95,8 @@ def get_input(nikename,topic,emtion):
     print(result)
 
     #整理成输入提示
-    job = result[0].strip()  # 去掉前后的空格
-    hobbies = result[1].strip()  # 去掉前后的空格
+    job = result[0].strip()  
+    hobbies = result[1].strip() 
 
     hobby_list = hobbies.split(",")  # 以逗号分隔多个兴趣爱好
     hobby_list = [h.replace('and', '').strip() for h in hobby_list]
@@ -110,23 +109,19 @@ def get_input(nikename,topic,emtion):
 
 def main(img,user,topic,emtion,style):
     # 根据参数调用不同的函数
-    # input = get_input(user, topic, emtion)
-    input = f'[job:marketing manager;hobby:playing guitar;topic:Health;emotion:Anxiety]'
-    blog = generate_blog(input, style)
+    input = get_input(user, topic, emtion)
+    text = generate_blog(input, style)
     direction_path = create_directory_and_file(user, topic, emtion)
-    # 在用户目录下创建文件 blog.txt
-    file_name = f"blog.txt"
+    file_name = f"text.txt"
     file_path = os.path.join(direction_path, file_name)
     with open(file_path, "w", encoding="utf-8") as file:
-        file.write(blog)
+        file.write(text)
 
     if img:
-        html = generate_img(blog)
+        html = generate_img(text)
         download_picture(html, direction_path)
         print(f"image written and saved to blog")
 
 
-#传入参数，触发文本生成和评论生成
-
-main(img=False,user="平安北京朝阳", topic="Hometown",emtion="Pride",style="News Style")  # 将会生成文本 Moyan Style News Style Trump Style
+main(img=False,user="user_name", topic="Hometown",emtion="Pride",style="xxx Style")  # 将会生成文本 
 
