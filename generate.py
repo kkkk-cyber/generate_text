@@ -121,6 +121,5 @@ def main(img,user,topic,emtion,style):
         download_picture(html, direction_path)
         print(f"image written and saved to blog")
 
-
 main(img=False,user="user_name", topic="Hometown",emtion="Pride",style="xxx Style")  # 将会生成文本 
 
