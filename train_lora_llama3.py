@@ -56,7 +56,6 @@ def main():
         device_map=device_map,
         trust_remote_code=args.trust_remote_code,
         quantization_config=bnb_config,
-        # use_auth_token=args.use_auth_token,
     )
 
     # lora_config设置导入
@@ -70,19 +69,14 @@ def main():
     )
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=args.gradient_checkpointing)
     model = get_peft_model(model=model, peft_config=peft_config)
-    #  获得lora合并后的当前模型
-    # model_lora = get_peft_model(model=model, peft_config=lora_config)
+    
 
 
 
     # 加载tokenizer方法
     tokenizer = AutoTokenizer.from_pretrained(
         args.tokenizer,
-        #cache_dir=args.cache_dir,
-        #use_fast=True,
         padding_side="right",
-        # tokenizer_type='llama',
-        #trust_remote_code=args.trust_remote_code,
         legacy=False,
     )
     if 'Llama-3' in args.base_model:
@@ -91,7 +85,6 @@ def main():
 
     tokenizer.pad_token_id = tokenizer.unk_token_id
     model.config.unk_token_id = tokenizer.unk_token_id
-    # model.config.pad_token_id = model.config.unk_token_id
     model.config.pad_token_id = tokenizer.eos_token_id
 
     dataset = load_dataset("json", data_files=args.data_path)  # 以dataset["train"]形式导入数据集
