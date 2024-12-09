@@ -91,9 +91,7 @@ def get_input(nikename,topic,emtion):
     cursor.execute(query, (nikename,))
     # 获取查询结果
     result = cursor.fetchone()  # 只获取一行，如果需要获取多行可以用 fetchall()
-    print(result)
 
-    #整理成输入提示
     job = result[0].strip()  
     hobbies = result[1].strip() 
 
