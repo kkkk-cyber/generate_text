@@ -9,9 +9,8 @@ from peft import PeftModel
 from typing import Union
 import queue
 import random
-import requests  # 请求网页
+import requests  
 import traceback
-import os
 import jieba.analyse as ana
 import jieba
 import jieba.posseg as jp
