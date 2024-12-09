@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网络流量监控系统</title>
+    <link rel="stylesheet" href="{% static 'classification_app/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'classification_app/css/table.css' %}">
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        .spinner {
+            width: 60px;
+            height: 60px;
+            background-color: #67CF22;
+            
+            margin: 100px auto;
+            -webkit-animation: rotateplane 1.2s infinite ease-in-out;
+            animation: rotateplane 1.2s infinite ease-in-out;
+            
+        }
+            
+        @-webkit-keyframes rotateplane {
+            0% { -webkit-transform: perspective(120px) }
+            50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+            100% { -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg) }
+        }
+        
+        @keyframes rotateplane {
+            0% {
+                transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+            } 50% {
+                transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+                -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+            } 100% {
+                transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+                -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            }
+        }
+    </style>
+
+    <script>
+    function checkForm()
+    {
+    alert("文件已提交！");
+    }
+    </script>
+
+    <script>
+        function loadinfo(){
+            var _PageHeight = document.body.scrollHeight,
+                _PageWidth = document.body.scrollWidth;
+            var _LoadingTop = _PageHeight > 90 ? (_PageHeight - 90) / 2 : 0,
+                _LoadingLeft = _PageWidth > 90 ? (_PageWidth - 90) / 2 : 0;
+            var _LoadingHtml = '<div id="loadingDiv" style="position:absolute;left:0;width:100%;height:' + _PageHeight + 'px;top:0;background:#FFFFFF;opacity:1.0 filter:alpha(opacity=80);z-index:10000;><div class="spinner" style="position: top: 60px; margin:' + _LoadingTop + 'px auto ;"></div></div>';
+            document.write(_LoadingHtml);
+
+            document.onreadystatechange = completeloading;
+
+            function completeloading() {
+                if (document.readyState == "complete"){
+                    $("#loadingDiv").fadeOut(1500);
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>欢迎使用网络流量监控系统</h1>
+    </div>
+    {% block title %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    <div class="bottom_layer">
+      <p align="center">&copy;2020-2021 1103接入组</p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评论生成器</title>
+
+    <!-- 引入本地 Bootstrap CSS 文件 -->
+    <link href="{{ url_for('static', filename='bootstrap-3.3.5/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 95%;
+        }
+
+        h1 {
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .output-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 2rem;
+            height: 250px;
+            overflow-y: auto;
+            box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .btn-custom {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            outline: none;
+            margin-top: 10px;
+        }
+
+        .btn-info {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+
+        .btn-info:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* 使按钮在按下时有反馈 */
+        .btn-custom:active {
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>评论生成器</h1>
+
+        <!-- 热点新闻展示 -->
+        <div class="form-section">
+            <div class="output-box" id="hot-news-box">
+                热点新闻将在这里显示...
+            </div>
+            <button class="btn btn-info btn-custom" id="fetch-hot-news-btn">获取热点内容</button>
+        </div>
+
+        <!-- 评论生成 -->
+        <div class="form-section">
+            <div class="output-box" id="comment-box">
+                生成的交互内容将在这里显示...
+            </div>
+            <button class="btn btn-primary btn-custom" id="generate-comment-btn">生成交互内容</button>
+        </div>
+    </div>
+
+    <!-- 引入本地 Bootstrap JS 文件 -->
+    <script src="{{ url_for('static', filename='bootstrap-3.3.5/js/bootstrap.min.js') }}"></script>
+
+    <script>
+        // 防止用户重复点击的逻辑
+        let isFetchingHotNews = false;
+        let isGeneratingComment = false;
+
+        // 爬取热点新闻按钮点击事件
+        document.getElementById('fetch-hot-news-btn').addEventListener('click', function() {
+            if (isFetchingHotNews) {
+                alert('正在获取热点内容，请耐心等待...');
+                return;
+            }
+
+            // 设置标志为正在获取
+            isFetchingHotNews = true;
+            document.getElementById('fetch-hot-news-btn').disabled = true;
+
+            // 向后端发起GET请求，获取热点新闻
+            fetch('/fetch_hot_news')
+                .then(response => response.json())
+                .then(data => {
+                    // 显示热点新闻
+                    document.getElementById('hot-news-box').innerHTML = data.hot_news.join('<br>');
+                })
+                .catch(error => console.error('Error:', error))
+                .finally(() => {
+                    // 恢复按钮可用状态
+                    isFetchingHotNews = false;
+                    document.getElementById('fetch-hot-news-btn').disabled = false;
+                });
+        });
+
+        // 生成评论按钮点击事件
+        document.getElementById('generate-comment-btn').addEventListener('click', function() {
+            if (isGeneratingComment) {
+                alert('正在生成交互内容，请耐心等待...');
+                return;
+            }
+
+            // 设置标志为正在生成
+            isGeneratingComment = true;
+            document.getElementById('generate-comment-btn').disabled = true;
+
+            // 向后端发起请求，获取生成的评论
+            fetch('/generate_comment')
+                .then(response => response.json())
+                .then(data => {
+                    // 显示生成的评论
+                    document.getElementById('comment-box').innerHTML = data.comment.join('<br>');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                })
+                .finally(() => {
+                    // 恢复按钮可用状态
+                    isGeneratingComment = false;
+                    document.getElementById('generate-comment-btn').disabled = false;
+                });
+        });
+    </script>
+</body>
+
+</html>

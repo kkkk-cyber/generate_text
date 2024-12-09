@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本生成器</title>
+
+    <!-- 引入最新的 Bootstrap CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <!-- 引入 Google Fonts 和 Font Awesome -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #e0f7fa);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1150px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 30px auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 700;
+        }
+
+        .btn-custom {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .output-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            height: 350px;
+            width: 100%;
+            overflow-y: auto;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .output-image {
+            max-width: 100%;
+            max-height: 300px;
+            height: auto;
+            margin-top: 20px;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>博文生成器</h1>
+
+        <div class="row form-section">
+            <!-- 生成类型参数 -->
+            <div class="col-md-6 mb-3">
+                <label for="generation-type" class="form-label"><i class="fas fa-file-alt"></i> 生成类型</label>
+                <select id="generation-type" class="form-control">
+                    <option value="1">纯文本</option>
+                    <option value="2">图文</option>
+                </select>
+            </div>
+
+            <!-- 情感 -->
+            <div class="col-md-6 mb-3">
+                <label for="emotion" class="form-label"><i class="fas fa-heart"></i> 情感</label>
+                <input type="text" id="emotion" class="form-control" placeholder="输入情感...">
+            </div>
+        </div>
+
+        <div class="row form-section">
+            <!-- 主题 -->
+            <div class="col-md-6 mb-3">
+                <label for="theme" class="form-label"><i class="fas fa-lightbulb"></i> 主题</label>
+                <input type="text" id="theme" class="form-control" placeholder="输入主题...">
+            </div>
+
+            <!-- 用户ID (下拉框) -->
+            <div class="col-md-6 mb-3">
+                <label for="user" class="form-label"><i class="fas fa-user"></i> 用户ID</label>
+                <select id="user" class="form-control">
+                    <!-- 用户ID将通过 JS 动态加载 -->
+                </select>
+            </div>
+        </div>
+
+        <!-- 输出框 -->
+        <div class="output-box" id="output-box">
+            <div id="generated-text">生成的内容将在这里显示...</div>
+            <img id="generated-image" class="output-image" style="display: none;">
+        </div>
+
+        <!-- 警告消息 -->
+        <div class="alert-message" id="alert-message" style="display: none;">
+            正在生成，请耐心等待...
+        </div>
+
+        <!-- 生成按钮 -->
+        <button class="btn btn-primary w-100 btn-custom" id="generate-btn">
+            <i class="fas fa-magic"></i> 生成
+        </button>
+    </div>
+
+    <!-- 引入 Bootstrap 和 jQuery JS 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        let isGenerating = false; // 增加一个标志来跟踪生成状态
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 页面加载时获取用户ID列表并填充下拉框
+            fetch('/get_portraits')  // 获取所有用户信息的后端路由
+                .then(response => response.json())
+                .then(data => {
+                    const userSelect = document.getElementById('user');
+                    data.forEach(user => {
+                        const option = document.createElement('option');
+                        option.value = user.nikename;  // 使用用户ID作为值
+                        option.textContent = user.nikename;  // 显示用户的名字
+                        userSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        // 生成文本按钮点击事件
+        document.getElementById('generate-btn').addEventListener('click', function () {
+            // 如果正在生成，显示提示并阻止重复生成
+            if (isGenerating) {
+                document.getElementById('alert-message').style.display = 'block';
+                return;
+            }
+
+            // 获取输入的值
+            const generationType = document.getElementById('generation-type').value;
+            const emotion = document.getElementById('emotion').value;
+            const theme = document.getElementById('theme').value;
+            const user = document.getElementById('user').value;  // 获取下拉框中选中的用户ID
+
+            // 开始生成，设置状态为 true
+            isGenerating = true;
+            document.getElementById('alert-message').style.display = 'none';
+
+            // 发送POST请求到后端
+            fetch('/generate_text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    generation_type: parseInt(generationType),
+                    emotion: emotion,
+                    theme: theme,
+                    user: user  // 传递选中的用户ID
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // 显示生成的内容
+                    document.getElementById('generated-text').textContent = data.generated_text;
+                    const generatedImage = document.getElementById('generated-image');
+
+                    if (data.generated_image) {
+                        generatedImage.src = data.generated_image;
+                        generatedImage.style.display = 'block';
+                    } else {
+                        generatedImage.style.display = 'none';
+                    }
+
+                    // 生成完成，设置状态为 false
+                    isGenerating = false;
+                    document.getElementById('alert-message').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // 生成失败，设置状态为 false
+                    isGenerating = false;
+                    document.getElementById('alert-message').style.display = 'none';
+                });
+        });
+    </script>
+</body>
+
+</html>

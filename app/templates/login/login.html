@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录和注册</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1zY9sdShqsGB+I1" crossorigin="anonymous">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 50px;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- 登录/注册标签 -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">登录</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab" aria-controls="register" aria-selected="false">注册</button>
+            </li>
+        </ul>
+
+        <!-- 登录和注册表单 -->
+        <div class="tab-content" id="myTabContent">
+            <!-- 登录表单 -->
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                <form id="login-form">
+                    <h3 class="form-title">用户登录</h3>
+                    <div class="mb-3">
+                        <label for="login-username" class="form-label">用户名</label>
+                        <input type="text" class="form-control" id="login-username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="login-password" class="form-label">密码</label>
+                        <input type="password" class="form-control" id="login-password" required>
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" onclick="handleLogin()">登录</button>
+                </form>
+            </div>
+
+            <!-- 注册表单 -->
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                <form id="register-form">
+                    <h3 class="form-title">用户注册</h3>
+                    <div class="mb-3">
+                        <label for="register-username" class="form-label">用户名</label>
+                        <input type="text" class="form-control" id="register-username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="register-password" class="form-label">密码</label>
+                        <input type="password" class="form-control" id="register-password" required>
+                    </div>
+                    <button type="button" class="btn btn-success w-100" onclick="handleRegister()">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 处理登录
+        function handleLogin() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // 处理注册
+        function handleRegister() {
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqxarNf5pNAcmaApt5IYtAJKo7deA2in7zC9Q9ancTnF9KARspOOhjwB46dVt" crossorigin="anonymous"></script>
+</body>
+</html>
