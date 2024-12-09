@@ -166,6 +166,7 @@ def generate_blog(input,style):
                         torch_dtype=torch.float16,
                     ).to(device)
                 print("rewrite text....")
+                # 生成文本....
                 generation_output = model_rewrite.generate(
                     input_ids=input_ids,
                     generation_config=generation_params,
@@ -181,6 +182,7 @@ def generate_blog(input,style):
                         torch_dtype=torch.float16,
                     ).to(device)
                 print("generate text....")
+                # 改写文本....
                 generation_output = model_generate.generate(
                     input_ids=input_ids,
                     generation_config=generation_params,
