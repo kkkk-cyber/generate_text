@@ -114,11 +114,7 @@ def generate_blog(input,style):
 
     tokenizer = AutoTokenizer.from_pretrained(
         args.tokenizer,
-        # cache_dir=args.cache_dir,
-        # use_fast=True,
         padding_side="right",
-        # tokenizer_type='llama',
-        # trust_remote_code=args.trust_remote_code,
         legacy=False,
     )
     if 'Llama-3' in args.base_model:
