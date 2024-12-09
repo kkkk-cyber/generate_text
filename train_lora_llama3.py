@@ -12,7 +12,6 @@ from config_module import (
     data_config,
 )
 
-
 def main():
     # 创建 parser 并指定数据类
     parser = HfArgumentParser(
@@ -78,16 +77,7 @@ def main():
     #  获得lora合并后的当前模型
     # model_lora = get_peft_model(model=model, peft_config=lora_config)
 
-    #  打印当前可训练参数情况
-    # model_lora.print_trainable_parameters()
 
-    # if args.gradient_checkpointing:
-    #     model.enable_input_require_grads()
-
-    # if not ddp and torch.cuda.device_count() > 1:
-    #     # 是否开启并行操作
-    #     model.is_parallelizable = True
-    #     model.model_parallel = True
 
     # 加载tokenizer方法
     tokenizer = AutoTokenizer.from_pretrained(
