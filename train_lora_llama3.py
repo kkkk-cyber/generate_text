@@ -35,8 +35,6 @@ def main():
         replace_llama_attn_with_xformers_attn()
 
     device_map = "auto"
-    # world_size = int(os.environ.get("WORLD_SIZE", 1))
-
 
     compute_dtype = (
         torch.float16
