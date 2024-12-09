@@ -56,8 +56,6 @@ class prompter(object):
 
         # 如果#的数量少于3个，直接返回原文本
         if len(hash_indices) < 3:
-            # with open(file_path, "w", encoding="utf-8") as file:
-            #     file.write(text)
             print(text)
             return text
         third_hash_index = hash_indices[2]
@@ -73,8 +71,6 @@ class prompter(object):
         keyword="Response:"
         keyword_position = result.find(keyword)
         if keyword_position != -1:
-            # 获取关键词之前的内容
-            result= result[keyword_position+10:]
             print(result)
             with open(file_path, "w", encoding="utf-8") as file:
                 file.write(result)
