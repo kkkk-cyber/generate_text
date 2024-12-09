@@ -1,9 +1,0 @@
-{
-    "description": "Template used by SFTTrainer.",
-    "prompt_input": "### Human:{instruction}\n{input}\n### Assistant: ",
-    "prompt_no_input": "### Human:{instruction}\n### Assistant: ",
-    "response_split": "### Assistant:"
-
-
-
-}
