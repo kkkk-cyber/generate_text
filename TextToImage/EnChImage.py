@@ -12,11 +12,7 @@ import textwrap
 
 # 定义最大字符数，确保每次查询不会超过限制
 MAX_QUERY_LENGTH = 500
-
 root = './blog'
-# headers = {'user-agent': 'Mozilla/5.0'}  # 浏览器伪装，因为有的网站会反爬虫，通过该headers可以伪装成浏览器访问，否则user-agent中的代理信息为python
-# headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-#                          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"}
 headers = {'User-Agent': 'Mozilla/5.0 (Macintoosh; Intel Mac OS X 10_14_68) '
                          'AppleWebKit/538.36 (KHTML, like Gecko) Chrome/76.0.3904.97 Safari/537.36'}
 
@@ -34,36 +30,6 @@ def translate_english_to_chinese(text):
     # 将翻译后的结果拼接为一个完整的字符串
     translation = ' '.join(translated_chunks)
     return translation
-
-
-# def download_picture(html):
-#     pic_url = re.findall('"objURL":"(.*?)",', html, re.S)  # 找到符合正则规则的目标网站
-#     num = len(pic_url)
-#     # print("num-------------", num)
-# 
-#     sub_root = root
-#     txt_path = sub_root + '/download_detail.txt'
-# 
-#     print('现在开始下载图片...')
-# 
-#     each = choice(pic_url)
-#     a = '正在下载，图片地址为:' + str(each) + '\n'
-#     print(a)
-#     path = sub_root + '/1'
-#     try:
-#         if not os.path.exists(sub_root):
-#             os.mkdir(sub_root)
-#         if not os.path.exists(path):
-#             pic = requests.get(each, headers=headers, timeout=10)
-#             with open(path + '.jpg', 'wb') as f:
-#                 f.write(pic.content)
-#                 f.close()
-#             with open(txt_path, 'a') as f:
-#                 f.write(a)
-#                 f.close()
-#     except:
-#         traceback.print_exc()
-#         print('【错误】当前图片无法下载')
 
 
 def get_stopword_list():
