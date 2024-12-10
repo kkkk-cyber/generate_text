@@ -13,21 +13,17 @@ import random
 def blogGenerate():
     generated_blog = "这是一个生成的博文内容。"
     return render_template('./blogGenerate/blogGenerate.html', generated_text=generated_blog)
-#获取数据库中人物名，在前端展示
 @app.route('/get_portraits', methods=['GET'])
 def get_portraits():
-    # 查询所有人物画像
     portraits = Portrait.query.all()
     portrait_list = [{'nikename': portrait.nikename} for portrait in portraits]  # 获取ID和名称
 
-    # 返回JSON格式的用户数据
     return jsonify(portrait_list)
  
 # 接收前端请求并返回生成文本的路由
 @app.route('/generate_text', methods=['POST'])
 def generate_text():
     # 获取前端传递的 JSON 数据
-    
     data = request.get_json()
     print(data)
     generation_type = data.get('generation_type')
@@ -48,14 +44,6 @@ def generate_text():
         return jsonify({'generated_text': generated_text, 'generated_image': generated_image})
     else:
         return jsonify({'generated_text': '无效的生成类型', 'generated_image': None})
-
-
-
-
-
-
-
-
 
 
 # 渲染评论生成页面
