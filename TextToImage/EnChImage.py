@@ -70,9 +70,6 @@ def generate_img(inputWords):
         result_string = "".join(words)
         resWords.append(result_string)
 
-    # strWord = "".join(ana.tfidf(word, topK=8, allowPOS=('n', 'nr', 'ns', 'nt')))
-    # print("TF-IDF提取到的关键词为：", strWord)
-
     strWord = resWords[0]
 
     # 假设最多有100页,随机生成一个页面偏移量
