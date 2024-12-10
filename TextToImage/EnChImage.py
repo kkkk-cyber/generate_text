@@ -74,23 +74,13 @@ def generate_img(inputWords):
     # print("TF-IDF提取到的关键词为：", strWord)
 
     strWord = resWords[0]
-    # global root
-    # root = root + strWord
-    #
-    # if not os.path.exists(root):
-    #     os.mkdir(root)
 
     # 假设最多有100页,随机生成一个页面偏移量
     pageId = randint(0, 100)
-    # print("pageId----------", pageId)
 
-    # url = 'http://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word=' + word + "&pn=" + \
-    #       str(pageId) + "&gsm=?&ct=&ic=0&lm=-1&width=0&height=0"
     url = 'http://image.baidu.com/search/flip?tn=resultjson_com&ipn=rj&ct=201326592&fp=result&queryWord=' + strWord + \
           '&cl=2&lm=-1&ie=utf-8&oe=utf-8&st=-1&ic=0&word=' + strWord + '&face=0&istype=2nc=1&pn=' + str(
         pageId) + '&rn=1'
-
-    # print("url-------------", url)
 
     proxies = {
         'http': None,
