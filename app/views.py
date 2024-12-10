@@ -17,7 +17,6 @@ def blogGenerate():
 def get_portraits():
     portraits = Portrait.query.all()
     portrait_list = [{'nikename': portrait.nikename} for portrait in portraits]  # 获取ID和名称
-
     return jsonify(portrait_list)
  
 # 接收前端请求并返回生成文本的路由
