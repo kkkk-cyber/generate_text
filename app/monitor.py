@@ -4,42 +4,6 @@ import queue
 import time
 import os
 
-
-# class Monitor(object):
-#     def __init__(self, store_dir, remain_time=60):
-#         self.remain_time = remain_time
-#         self.store_dir = store_dir
-#         self.now_date = "{}".format(time.strftime("%Y%m%d", time.localtime()))
-#         self.flname = "{}.pcap".format(time.strftime("%Y%m%d-%H:%M", time.localtime()))
-#         self.flpath = os.path.join(self.store_dir, self.now_date, self.flname)
-
-#     def sniff_filter(self, packet):
-#         if TCP in packet:
-#             return True
-#         return False
-    
-#     def call_back(self, packet):
-#         self.now_date = "{}".format(time.strftime("%Y%m%d", time.localtime()))
-#         if not os.path.exists(os.path.join(self.store_dir, self.now_date)):
-#             os.makedirs(os.path.join(self.store_dir, self.now_date))
-#         now_time = time.strftime("%Y%m%d-%H:%M", time.localtime())
-#         if "{}.pcap".format(now_time) != self.flname:
-#             self.flname = "{}.pcap".format(time.strftime("%Y%m%d-%H:%M", time.localtime()))
-#             self.now_date = "{}".format(time.strftime("%Y%m%d", time.localtime()))
-#             if not os.path.exists(os.path.join(self.store_dir, self.now_date)):
-#                 os.makedirs(os.path.join(self.store_dir, self.now_date))
-#             self.flpath = os.path.join(self.store_dir, self.now_date, self.flname)
-#             self.wtr = PcapWriter(self.flpath)
-#         # if int(time.time()) - packet.time < 60:
-#         self.wtr.write(packet)
-
-#     def start(self, count):
-#         if not os.path.exists(os.path.join(self.store_dir, self.now_date)):
-#             os.makedirs(os.path.join(self.store_dir, self.now_date))
-#         # sniff(lfilter=self.sniff_filter, prn=self.call_back, count=count)
-#         self.wtr = PcapWriter(self.flpath)
-#         sniff(prn=self.call_back, count=count)
-
 class Monitor(object):
     def __init__(self, store_dir, remain_time=60):
         self.remain_time = remain_time
@@ -82,7 +46,6 @@ class Monitor(object):
         sniff_thread.join()
         write_thread.join()
     
-
 if __name__ == "__main__":
     mt = Monitor("./store/pcap")
     try:
