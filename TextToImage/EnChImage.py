@@ -84,6 +84,5 @@ def generate_img(inputWords):
         'https': None
     }
     html = requests.get(url, headers=headers, proxies=proxies)
-    # print(html.text)  # 打印网页源码
     return html.text
-    # download_picture(html.text)
+
