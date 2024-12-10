@@ -59,7 +59,6 @@ class prompter(object):
             print(text)
             return text
         third_hash_index = hash_indices[2]
-        # 输出第三个#之前的内容
 
         return text[:third_hash_index]
 
