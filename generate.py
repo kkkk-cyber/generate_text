@@ -90,12 +90,12 @@ def get_input(nikename,topic,emtion):
     query = f"SELECT {columns_str} FROM person_output WHERE nikename = %s"
     cursor.execute(query, (nikename,))
     # 获取查询结果
-    result = cursor.fetchone()  # 只获取一行，如果需要获取多行可以用 fetchall()
+    result = cursor.fetchone()
 
     job = result[0].strip()  
     hobbies = result[1].strip() 
 
-    hobby_list = hobbies.split(",")  # 以逗号分隔多个兴趣爱好
+    hobby_list = hobbies.split(",") 
     hobby_list = [h.replace('and', '').strip() for h in hobby_list]
     print(hobby_list)
     target_hobby = random.choice(hobby_list)
