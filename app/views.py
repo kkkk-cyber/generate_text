@@ -8,12 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 from generate import generate
 import random
 
-
-
-
-#孔超娜 博文生成接口
-
-
 #渲染前端界面
 @app.route('/blog_generate', methods=['GET'])
 def blogGenerate():
