@@ -16,7 +16,6 @@ root = './blog'
 headers = {'User-Agent': 'Mozilla/5.0 (Macintoosh; Intel Mac OS X 10_14_68) '
                          'AppleWebKit/538.36 (KHTML, like Gecko) Chrome/76.0.3904.97 Safari/537.36'}
 
-
 def translate_english_to_chinese(text):
     # 创建一个翻译器实例，设置目标语言为中文
     translator = Translator(to_lang="zh")
@@ -36,7 +35,6 @@ def get_stopword_list():
     stop_word_path = './TextToImage/KeywordExtraction/stop_words.txt'
     stopword_list = [sw.replace('\n', '') for sw in open(stop_word_path, encoding='UTF-8').readlines()]
     return stopword_list
-
 
 def generate_img(inputWords):
     # 分词过滤条件
