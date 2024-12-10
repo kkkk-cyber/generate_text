@@ -149,7 +149,6 @@ def generate_blog(input,style):
         input_ids = input_tokenizer["input_ids"].to(device)
         print(prompt)
 
-
         # 使用cuda进行forward计算输出
         with torch.no_grad():
             if "Rewrite" in instruction:
@@ -200,5 +199,6 @@ def generate_blog(input,style):
     instruction_style="Task:Rewrite the sentence style without changing the content of the sentence.The target style:"+style+". Let's think about it step by step. First, describe the style. Then, describe the language pattern of this style. Finally, output the rewritten sentence without explanation."
     text2 = evaluate(instruction_style,input_style,temperature=0.2,top_p=0.75,top_k=40,repetition_penalty=1.1)
     return text2
+    
 if __name__ == "__main__":
     main()
