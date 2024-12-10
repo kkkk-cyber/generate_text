@@ -114,7 +114,6 @@ def main():
         args=train_args,
         max_seq_length=args.model_max_length,
         packing=False,
-        #padding=True,
         dataset_text_field="text",
     )
     model.config.use_cache = args.use_cache
