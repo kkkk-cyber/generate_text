@@ -82,7 +82,6 @@ def get_input(nikename,topic,emtion):
     result = cursor.fetchone()
     job = result[0].strip()  
     hobbies = result[1].strip() 
-
     hobby_list = hobbies.split(",") 
     hobby_list = [h.replace('and', '').strip() for h in hobby_list]
     print(hobby_list)
