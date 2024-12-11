@@ -18,7 +18,6 @@ from gensim import corpora, models
 from generate_text.generate_llama3 import generate_text
 from TextToImage.EnChImage import generate_img
 root_path = "./text"
-
 def create_directory_and_file(user_id, topic, emotion):
     # 定义目录名称
     directory_name = f"user_{user_id}"
