@@ -129,7 +129,6 @@ def generate_blog(input,style):
         input_tokenizer = tokenizer(prompt, return_tensors="pt")
         input_ids = input_tokenizer["input_ids"].to(device)
         print(prompt)
-
         # 使用cuda进行forward计算输出
         with torch.no_grad():
             if "Rewrite" in instruction:
