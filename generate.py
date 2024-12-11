@@ -23,7 +23,6 @@ def create_directory_and_file(user_id, topic, emotion):
     directory_name = f"user_{user_id}"
     # 获取当前目录并创建用户目录路径
     user_directory = os.path.join(root_path, directory_name)
-
     # 创建目录
     if not os.path.exists(user_directory):
         os.mkdir(user_directory)
