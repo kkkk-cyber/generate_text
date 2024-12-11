@@ -15,7 +15,6 @@ from generate_text.config_module import (
 )
 class prompter(object):
     __slots__ = "template"
-
     def __init__(self, template):
         with open(template) as fp:
             self.template = json.load(fp)
