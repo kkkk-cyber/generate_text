@@ -29,7 +29,6 @@ def create_directory_and_file(user_id, topic, emotion):
         print(f"Directory '{directory_name}' created successfully.")
     else:
         print(f"Directory '{directory_name}' already exists.")
-
     topic_directory_name = f"topic_{topic}-emotion_{emotion}"
     topic_directory = os.path.join(user_directory, topic_directory_name)
     # 创建子目录
