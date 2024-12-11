@@ -82,7 +82,6 @@ def generate_blog(input,style):
         lora_args,
         data_args,
     ) = parser.parse_args_into_dataclasses()
-
     args = argparse.Namespace(
         **vars(model_args), **vars(train_args), **vars(lora_args), **vars(data_args)
     )
