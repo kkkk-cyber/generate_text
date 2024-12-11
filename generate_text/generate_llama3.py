@@ -67,7 +67,6 @@ class prompter(object):
         else:
             print("Style rewriting error, please check the output format.")
         return result
-
 def generate_blog(input,style):
     if torch.cuda.is_available():
         device = torch.device('cuda:0')
