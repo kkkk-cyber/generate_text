@@ -87,7 +87,6 @@ class train_config(TrainingArguments):
     save_steps: int = field(default=250, metadata={"help": 'How often to save a model'})
     save_total_limit: int = field(default=40, metadata={"help": 'How many checkpoints to save before the oldest is overwritten'})
     gradient_checkpointing_kwargs: List[bool] = field(default_factory=lambda: {"use_reentrant": True}, metadata={"help": 'debug for warning'})
-
 @dataclass
 class lora_config:
     #   lora_config   #
