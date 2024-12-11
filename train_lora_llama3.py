@@ -105,6 +105,5 @@ def main():
     trainer.train()
     trainer.model.save_pretrained(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
-
 if __name__ == "__main__":
     main()
