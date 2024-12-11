@@ -60,7 +60,6 @@ def main():
     )
     model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=args.gradient_checkpointing)
     model = get_peft_model(model=model, peft_config=peft_config)
-
     # 加载tokenizer方法
     tokenizer = AutoTokenizer.from_pretrained(
         args.tokenizer,
