@@ -20,7 +20,6 @@ class model_config:
     )
     use_auth_token: Optional[bool] = field(default=False, metadata={"help": "Enables using Huggingface auth token from Git Credentials."})
     use_cache: Optional[bool] = field(default=False, metadata={"help": "Whether to use cache."})
-
 @dataclass
 class train_config(TrainingArguments):
     #  train_config  #
