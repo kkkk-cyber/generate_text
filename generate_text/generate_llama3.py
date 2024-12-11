@@ -1,3 +1,4 @@
+
 import torch
 import json
 import re
@@ -170,7 +171,6 @@ def generate_blog(input,style):
             return Prompter.get_style(output)
         else:
             return Prompter.get_response(output)
-
     instruction="This is your identity information, please Select a message and write a Twitter post. Use a natural tone and style, and avoid overly formal or rigid expressions. Add some common colloquial expressions and emotional words to make sentences closer to human communication."
     text1 = evaluate(instruction,input)
     input_style ="Context:"+text1
