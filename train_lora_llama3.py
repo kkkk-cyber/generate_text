@@ -35,7 +35,6 @@ def main():
         if args.fp16
         else (torch.bfloat16 if args.bf16 else torch.float32)
     )
-
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_use_double_quant=True,
