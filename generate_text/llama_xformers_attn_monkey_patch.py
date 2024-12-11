@@ -50,7 +50,6 @@ def xformers_forward(
         query_states, key_states, cos, sin, position_ids
     )
     # [bsz, nh, t, hd]
-
     if past_key_value is not None:
         # reuse k, v, self_attention
         key_states = torch.cat([past_key_value[0], key_states], dim=2)
