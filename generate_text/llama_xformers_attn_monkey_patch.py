@@ -24,7 +24,6 @@ def xformers_forward(
 ) -> Tuple[torch.Tensor, Optional[torch.Tensor], Optional[Tuple[torch.Tensor]]]:
     # pylint: disable=duplicate-code
     bsz, q_len, _ = hidden_states.size()
-
     query_states = (
         self.q_proj(hidden_states)
         .view(bsz, q_len, self.num_heads, self.head_dim)
