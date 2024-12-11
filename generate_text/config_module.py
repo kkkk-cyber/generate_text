@@ -108,7 +108,6 @@ class lora_config:
     task_type: str = field(
         default="CAUSAL_LM", metadata={"help": 'task_type'}
     )
-
 @dataclass
 class data_config:
     #   data_config   #
