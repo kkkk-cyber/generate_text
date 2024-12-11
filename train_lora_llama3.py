@@ -17,7 +17,6 @@ def main():
     parser = HfArgumentParser(
         (model_config, train_config, lora_config, data_config)
     )
-
     # 从命令行解析参数到数据类
     (
         model_args,
