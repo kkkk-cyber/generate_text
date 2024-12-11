@@ -57,7 +57,6 @@ class prompter(object):
         result = output.split(self.template["response_split"])[1].strip()
         result = re.sub(r'\[.*?\]', '', result)
         result = re.sub(r'\(.*?\)', '', result)
-
         keyword="Response:"
         keyword_position = result.find(keyword)
         if keyword_position != -1:
