@@ -60,7 +60,6 @@ def xformers_forward(
         query_states = query_states.transpose(1, 2)
         key_states = key_states.transpose(1, 2)
         value_states = value_states.transpose(1, 2)
-
         # This is a nasty hack. We know attention_mask in transformers is either LowerTriangular or all Zeros.
         # We therefore check if one element in the upper triangular portion is zero. If it is, then the mask is all zeros.
         if attention_mask is None or attention_mask[0, 0, 0, 1] == 0:
