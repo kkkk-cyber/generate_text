@@ -95,7 +95,6 @@ def xformers_forward(
             attn_weights = torch.max(
                 attn_weights, torch.tensor(torch.finfo(attn_weights.dtype).min)
             )
-
         # upcast attention to fp32
         attn_weights = nn.functional.softmax(
             attn_weights, dim=-1, dtype=torch.float32
