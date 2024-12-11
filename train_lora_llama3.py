@@ -30,7 +30,6 @@ def main():
         from llama_xformers_attn_monkey_patch import replace_llama_attn_with_xformers_attn
         replace_llama_attn_with_xformers_attn()
     device_map = "auto"
-
     compute_dtype = (
         torch.float16
         if args.fp16
