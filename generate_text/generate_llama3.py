@@ -101,7 +101,6 @@ def generate_blog(input,style):
     if 'Llama-3' in args.base_model:
         # print('Adding special tokens <unk=128002>.')
         tokenizer.unk_token_id = 128002
-
     tokenizer.pad_token_id = tokenizer.unk_token_id
     model.config.unk_token_id = tokenizer.unk_token_id
     model.config.pad_token_id = tokenizer.eos_token_id
