@@ -71,7 +71,6 @@ def get_input(nikename,topic,emtion):
         , database="db"
         , port=port
     )
-
     # 创建游标并执行查询
     cursor = db.cursor()
     columns = ["job_title", "hobbies"]  # 要查询的列名列表
