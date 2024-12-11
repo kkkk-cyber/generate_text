@@ -39,7 +39,6 @@ def create_directory_and_file(user_id, topic, emotion):
         print(f"Directory '{topic_directory_name}' already exists.")
     print(topic_directory)
     return topic_directory
-
 def download_picture(html,file_path):
     headers = {'User-Agent': 'Mozilla/5.0 (Macintoosh; Intel Mac OS X 10_14_68) '
                              'AppleWebKit/538.36 (KHTML, like Gecko) Chrome/76.0.3904.97 Safari/537.36'}
