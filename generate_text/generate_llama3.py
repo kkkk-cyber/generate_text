@@ -35,7 +35,6 @@ class prompter(object):
         if output:
             res = f"{res}{output}"
         return res
-
     def get_response(self, output: str) -> str:
         result = output.split(self.template["response_split"])[1].strip()
         result = re.sub(r'\[.*?\]', '', result)
