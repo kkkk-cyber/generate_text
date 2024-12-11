@@ -34,7 +34,6 @@ class prompter(object):
             )
         if output:
             res = f"{res}{output}"
-
         return res
 
     def get_response(self, output: str) -> str:
