@@ -105,7 +105,6 @@ def generate_blog(input,style):
     model.config.pad_token_id = tokenizer.eos_token_id
     template_path = "./generate_blog/prompt_SFT.json"
     Prompter = prompter(template_path)
-
     @torch.no_grad()
     def evaluate(
             instruction,
