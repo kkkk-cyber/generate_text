@@ -49,7 +49,6 @@ def main():
         trust_remote_code=args.trust_remote_code,
         quantization_config=bnb_config,
     )
-
     # lora_config设置导入
     peft_config = LoraConfig(
         r=args.r,
