@@ -92,7 +92,6 @@ def generate_blog(input,style):
         device_map=device,
         torch_dtype=torch.float16,
     )
-
     tokenizer = AutoTokenizer.from_pretrained(
         args.tokenizer,
         padding_side="right",
