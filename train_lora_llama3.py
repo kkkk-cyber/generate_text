@@ -41,7 +41,6 @@ def main():
         bnb_4bit_quant_type="nf4",
         bnb_4bit_compute_dtype=compute_dtype,
     )
-
     # 模型导入
     model = AutoModelForCausalLM.from_pretrained(
         pretrained_model_name_or_path=args.base_model,
