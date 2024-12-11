@@ -103,7 +103,6 @@ def main():
     )
     model.config.use_cache = args.use_cache
     trainer.train()
-
     trainer.model.save_pretrained(args.output_dir)
     tokenizer.save_pretrained(args.output_dir)
 
