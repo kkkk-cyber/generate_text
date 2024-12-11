@@ -37,7 +37,6 @@ def create_directory_and_file(user_id, topic, emotion):
         print(f"Directory '{topic_directory_name}' created successfully.")
     else:
         print(f"Directory '{topic_directory_name}' already exists.")
-
     print(topic_directory)
     return topic_directory
 
