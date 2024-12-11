@@ -13,7 +13,6 @@ from generate_text.config_module import (
     lora_config,
     data_config,
 )
-
 class prompter(object):
     __slots__ = "template"
 
