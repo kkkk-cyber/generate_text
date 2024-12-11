@@ -52,7 +52,6 @@ class prompter(object):
             print(text)
             return text
         third_hash_index = hash_indices[2]
-
         return text[:third_hash_index]
 
     def get_style(self, output: str) -> str:
