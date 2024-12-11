@@ -90,7 +90,6 @@ def main():
     tokenizer_vocab_size = len(tokenizer)
     print(f"Vocab of the base model: {model_vocab_size}")
     print(f"Vocab of the tokenizer: {tokenizer_vocab_size}")
-
     trainer = SFTTrainer(
         model,
         tokenizer=tokenizer,
