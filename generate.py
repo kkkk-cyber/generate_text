@@ -90,7 +90,6 @@ def get_input(nikename,topic,emtion):
     input = f'[job:marketing manager;hobby:playing guitar;topic:Health;emotion:Anxiety]'
     print(input)
     return input
-
 def main(img,user,topic,emtion,style):
     # 根据参数调用不同的函数
     input = get_input(user, topic, emtion)
