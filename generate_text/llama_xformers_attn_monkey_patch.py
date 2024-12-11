@@ -86,7 +86,6 @@ def xformers_forward(
                 f"Attention weights should be of size {(bsz * self.num_heads, q_len, kv_seq_len)}, but is"
                 f" {attn_weights.size()}"
             )
-
         if attention_mask is not None:
             if attention_mask.size() != (bsz, 1, q_len, kv_seq_len):
                 raise ValueError(
