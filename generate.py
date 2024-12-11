@@ -99,7 +99,6 @@ def main(img,user,topic,emtion,style):
     file_path = os.path.join(direction_path, file_name)
     with open(file_path, "w", encoding="utf-8") as file:
         file.write(text)
-
     if img:
         html = generate_img(text)
         download_picture(html, direction_path)
