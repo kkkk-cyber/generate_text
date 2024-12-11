@@ -48,7 +48,6 @@ class prompter(object):
         else:
             text = result
         hash_indices = [i for i, char in enumerate(text) if char == '#']
-
         # 如果#的数量少于3个，直接返回原文本
         if len(hash_indices) < 3:
             print(text)
