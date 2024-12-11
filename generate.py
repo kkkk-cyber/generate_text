@@ -46,7 +46,6 @@ def download_picture(html,file_path):
     num = len(pic_url)
     txt_path = file_path + '/download_detail.txt'
     print('现在开始下载图片...')
-
     each = random.choice(pic_url)
     a = '正在下载，图片地址为:' + str(each) + '\n'
     # print(a)
