@@ -80,7 +80,6 @@ def get_input(nikename,topic,emtion):
     cursor.execute(query, (nikename,))
     # 获取查询结果
     result = cursor.fetchone()
-
     job = result[0].strip()  
     hobbies = result[1].strip() 
 
