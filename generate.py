@@ -62,7 +62,6 @@ def download_picture(html,file_path):
     except:
         traceback.print_exc()
         print('【错误】当前图片无法下载')
-
 def get_input(nikename,topic,emtion):
     #读取数据库得到用户信息
     db = pymysql.connect(
