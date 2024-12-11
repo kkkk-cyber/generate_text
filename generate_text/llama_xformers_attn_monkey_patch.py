@@ -100,7 +100,6 @@ def xformers_forward(
             attn_weights, dim=-1, dtype=torch.float32
         ).to(query_states.dtype)
         attn_output = torch.matmul(attn_weights, value_states)
-
         if attn_output.size() != (bsz, self.num_heads, q_len, self.head_dim):
             raise ValueError(
                 f"`attn_output` should be of size {(bsz, self.num_heads, q_len, self.head_dim)}, but is"
