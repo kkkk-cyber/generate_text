@@ -44,7 +44,6 @@ def download_picture(html,file_path):
                              'AppleWebKit/538.36 (KHTML, like Gecko) Chrome/76.0.3904.97 Safari/537.36'}
     pic_url = re.findall('"objURL":"(.*?)",', html, re.S)  # 找到符合正则规则的目标网站
     num = len(pic_url)
-
     txt_path = file_path + '/download_detail.txt'
     print('现在开始下载图片...')
 
