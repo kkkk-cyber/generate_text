@@ -53,7 +53,6 @@ class prompter(object):
             return text
         third_hash_index = hash_indices[2]
         return text[:third_hash_index]
-
     def get_style(self, output: str) -> str:
         result = output.split(self.template["response_split"])[1].strip()
         result = re.sub(r'\[.*?\]', '', result)
