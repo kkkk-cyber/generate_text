@@ -164,7 +164,6 @@ def generate_blog(input,style):
                     output_scores=True,
                     max_new_tokens=128,
                 )
-
         s = generation_output.sequences[0]
         output = tokenizer.decode(s, skip_special_tokens=True)
         if "Rewrite" in instruction:
