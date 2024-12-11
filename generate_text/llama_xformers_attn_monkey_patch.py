@@ -39,7 +39,6 @@ def xformers_forward(
         .view(bsz, q_len, self.num_heads, self.head_dim)
         .transpose(1, 2)
     )
-
     kv_seq_len = key_states.shape[-2]
     if past_key_value is not None:
         kv_seq_len += past_key_value[0].shape[-2]
