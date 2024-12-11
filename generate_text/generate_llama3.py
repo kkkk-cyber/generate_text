@@ -18,7 +18,6 @@ class prompter(object):
     def __init__(self, template):
         with open(template) as fp:
             self.template = json.load(fp)
-
     def generate_prompt(
             self,
             instruction: str,
