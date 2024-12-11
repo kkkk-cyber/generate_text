@@ -103,7 +103,6 @@ def generate_blog(input,style):
     tokenizer.pad_token_id = tokenizer.unk_token_id
     model.config.unk_token_id = tokenizer.unk_token_id
     model.config.pad_token_id = tokenizer.eos_token_id
-
     template_path = "./generate_blog/prompt_SFT.json"
     Prompter = prompter(template_path)
 
