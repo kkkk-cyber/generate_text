@@ -32,7 +32,6 @@ class prompter(object):
             res = self.template["prompt_no_input"].format(
                 instruction=instruction
             )
-
         if output:
             res = f"{res}{output}"
 
