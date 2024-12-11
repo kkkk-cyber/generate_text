@@ -21,7 +21,6 @@ root_path = "./text"
 def create_directory_and_file(user_id, topic, emotion):
     # 定义目录名称
     directory_name = f"user_{user_id}"
-
     # 获取当前目录并创建用户目录路径
     user_directory = os.path.join(root_path, directory_name)
 
