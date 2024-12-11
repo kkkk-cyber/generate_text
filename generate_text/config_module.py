@@ -2,7 +2,6 @@ from transformers import TrainingArguments
 from dataclasses import dataclass, field
 from typing import Optional, List
 
-
 @dataclass
 class model_config:
     #   model_config   #
