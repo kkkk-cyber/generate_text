@@ -125,7 +125,6 @@ def generate_blog(input,style):
             eos_token_id=tokenizer.eos_token_id,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
         )
-
         prompt = Prompter.generate_prompt(instruction, input)
         input_tokenizer = tokenizer(prompt, return_tensors="pt")
         input_ids = input_tokenizer["input_ids"].to(device)
