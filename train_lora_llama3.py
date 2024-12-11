@@ -73,7 +73,6 @@ def main():
     model.config.unk_token_id = tokenizer.unk_token_id
     model.config.pad_token_id = tokenizer.eos_token_id
     dataset = load_dataset("json", data_files=args.data_path)  # 以dataset["train"]形式导入数据集
-
     if args.eval_dataset_size > 0:
         train_val = dataset["train"].train_test_split(
             test_size=args.eval_dataset_size, shuffle=True, seed=0
