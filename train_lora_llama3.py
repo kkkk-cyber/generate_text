@@ -86,7 +86,6 @@ def main():
     else:
         train_data = dataset["train"].shuffle()
         val_data = None
-
     model_vocab_size = model.get_input_embeddings().weight.size(0)
     tokenizer_vocab_size = len(tokenizer)
     print(f"Vocab of the base model: {model_vocab_size}")
