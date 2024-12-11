@@ -55,7 +55,6 @@ def xformers_forward(
         key_states = torch.cat([past_key_value[0], key_states], dim=2)
         value_states = torch.cat([past_key_value[1], value_states], dim=2)
     past_key_value = (key_states, value_states) if use_cache else None
-
     # We only apply xformers optimizations if we don't need to output the whole attention matrix
     if not output_attentions:
         query_states = query_states.transpose(1, 2)
