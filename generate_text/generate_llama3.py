@@ -86,7 +86,6 @@ def generate_blog(input,style):
     args = argparse.Namespace(
         **vars(model_args), **vars(train_args), **vars(lora_args), **vars(data_args)
     )
-
     # 导入模型
     model = AutoModelForCausalLM.from_pretrained(
         args.base_model,
