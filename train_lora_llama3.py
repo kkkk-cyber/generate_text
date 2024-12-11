@@ -11,7 +11,6 @@ from config_module import (
     lora_config,
     data_config,
 )
-
 def main():
     # 创建 parser 并指定数据类
     parser = HfArgumentParser(
