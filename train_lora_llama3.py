@@ -26,7 +26,6 @@ def main():
     args = argparse.Namespace(
         **vars(model_args), **vars(train_args), **vars(lora_args), **vars(data_args)
     )
-
     if args.xformers:        # 开启xformers设置
         from llama_xformers_attn_monkey_patch import replace_llama_attn_with_xformers_attn
         replace_llama_attn_with_xformers_attn()
